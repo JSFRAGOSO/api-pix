@@ -46,6 +46,7 @@ server.get("/pix", async (req, res) => {
 
   const payload = qrCodePix.payload()
   const qrcode = await qrCodePix.base64()
+  res.setHeader("Access-Control-Allow-Origin", "https://tools.latromi.com.br")
   res.json({ payload, qrcode })
 })
 
