@@ -4,13 +4,10 @@ const { v4: uuidv4 } = require("uuid")
 const cors = require("cors")
 const port = process.env.PORT || 3000
 const server = express()
+server.use(cors())
 server.use(express.json())
 
-var corsOptions = {
-  origin: "https://tools.latromi.com.br",
-}
-
-server.post("/pix", cors(corsOptions), async (req, res) => {
+server.post("/pix", async (req, res) => {
   const { key, name, message, city, value } = req.body
 
   const qrCodePix = QrCodePix.QrCodePix({
