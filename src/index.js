@@ -4,8 +4,14 @@ const { v4: uuidv4 } = require("uuid")
 const cors = require("cors")
 const port = process.env.PORT || 3000
 const server = express()
-server.use(cors())
 server.use(express.json())
+
+server.options("/pix", function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*")
+  res.setHeader("Access-Control-Allow-Methods", "*")
+  res.setHeader("Access-Control-Allow-Headers", "*")
+  res.end()
+})
 
 server.post("/pix", async (req, res) => {
   const { key, name, message, city, value } = req.body
