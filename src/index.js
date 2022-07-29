@@ -2,6 +2,7 @@ const express = require("express")
 const QrCodePix = require("qrcode-pix")
 const { v4: uuidv4 } = require("uuid")
 
+const port = process.env.PORT || 3000
 const server = express()
 server.use(express.json())
 
@@ -23,4 +24,4 @@ server.post("/pix", async (req, res) => {
   res.send({ payload, qrcode })
 })
 
-server.listen(3333)
+server.listen(port)
