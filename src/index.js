@@ -5,7 +5,13 @@ const cors = require("cors")
 const port = process.env.PORT || 3000
 const server = express()
 server.use(express.json())
-server.use(cors())
+//server.use(cors())
+
+server.options("/pix", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*")
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type")
+  res.send(true)
+})
 
 server.post("/pix", async (req, res) => {
   const { key, name, message, city, value } = req.body
@@ -22,7 +28,6 @@ server.post("/pix", async (req, res) => {
 
   const payload = qrCodePix.payload()
   const qrcode = await qrCodePix.base64()
-  res.setHeader("Access-Control-Allow-Origin", "*")
   res.json({ payload, qrcode })
 })
 
