@@ -28,7 +28,7 @@ server.post("/pix", async (req, res) => {
 
   const payload = qrCodePix.payload()
   const qrcode = await qrCodePix.base64()
-  res.send({ payload, qrcode })
+  res.json({ payload, qrcode })
 })
 
 server.listen(port)
